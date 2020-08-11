@@ -15,20 +15,16 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
     console.log('CCBot is online!')
-
+    
     // Narcia trigger
     var narcia = Narcia.instance;
-    console.log(narcia.startDate);
-    console.log(Date.now());
 
     (function(){
         var message = narcia.triggerMessage;
         if (message != null){
-            client.channels.fetch('742117366749724702')
+            client.channels.fetch('727254557062594742')
             .then(channel => channel.send(message))
             .catch(console.error);
-        } else {
-            console.log('no event triggered');
         }
 
         // Call function once every 15 sec

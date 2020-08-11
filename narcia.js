@@ -20,7 +20,7 @@ class Narcia{
     }
 
     get hasStarted(){
-        console.log(this.startDate + ' - ' + Date.now())
+        //console.log(this.startDate + ' - ' + Date.now())
         return (this.startDate - Date.now()) <= 0;
     }
 
@@ -31,7 +31,7 @@ class Narcia{
 
         let countdown = this.millisUntilStart();
         if(! this.hasStarted){
-            console.log('Event has not started yet');
+            //console.log('Event has not started yet');
             for(let i in _countdownTriggers){
                 let trigger = _countdownTriggers[i];
                 if(this.isInRangeOf(trigger, countdown)){
@@ -46,7 +46,7 @@ class Narcia{
             }
         } else {
             let eventTime = this.millisAfterStart();
-            console.log('Event time in h: ' + eventTime/1000/3600);
+           // console.log('Event time in h: ' + eventTime/1000/3600);
             // Day one of Narcia, small towns countdown
             if(eventTime < _dayInMillis){
                 countdown += _dayInMillis;
@@ -70,7 +70,11 @@ class Narcia{
                     let trigger = _countdownTriggers[i];
                     if(this.isInRangeOf(trigger, countdown)){
                         var minUntilStart = trigger / _minInMillis;
-                        return `Large towns can be captured in ${minUntilStart} minutes`;
+                        if(minUntilStart > 5){
+                            return `@everyone Large towns open in ${minUntilStart} minutes.`;
+                        } else {
+                            return `@everyone Log on now!\n Let's capture some large towns`;
+                        }
                     }
                 }
             }
@@ -112,7 +116,7 @@ class Narcia{
         var upperLimit = triggerTime+_triggerRange;
         var lowerLimit = triggerTime-_triggerRange;
 
-        console.log(lowerLimit +' - '+ checkTime +' - '+ upperLimit);
+        //console.log(lowerLimit +' - '+ checkTime +' - '+ upperLimit);
 
         if (checkTime - lowerLimit > 0 && upperLimit - checkTime > 0){
             console.log('in range!');
